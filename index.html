@@ -2,6 +2,58 @@
 <html>
 <head>
     <title>위스키 관세 계산기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .calculator-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f4e4;
+            border: 1px solid #d4edda;
+            color: #155724;
+            border-radius: 4px;
+        }
+    </style>
     <script>
         function calculateTariff() {
             var price = document.getElementById("price").value;
@@ -27,18 +79,19 @@
     </script>
 </head>
 <body>
-    <h2>위스키 관세 계산기 (대한민국)</h2>
-    <p>
-        통화 선택: 
+    <div class="calculator-container">
+        <h2>위스키 관세 계산기</h2>
+        <label for="currency">통화 선택:</label>
         <select id="currency">
-            <option value="KRW">KRW</option>
             <option value="USD">USD</option>
             <option value="EUR">EURO</option>
         </select>
-    </p>
-    <p>원화 환율 입력: <input type="number" id="exchangeRate" placeholder="원화 환율"></p>
-    <p>위스키 가격 입력: <input type="number" id="price"></p>
-    <button onclick="calculateTariff()">계산하기</button>
-    <div id="result"></div>
+        <label for="exchangeRate">원화 환율 입력:</label>
+        <input type="number" id="exchangeRate" placeholder="원화 환율">
+        <label for="price">위스키 가격 입력:</label>
+        <input type="number" id="price">
+        <button onclick="calculateTariff()">계산하기</button>
+        <div id="result"></div>
+    </div>
 </body>
 </html>
