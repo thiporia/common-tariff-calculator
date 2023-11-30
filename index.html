@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>위스키 관세 계산기</title>
+    <script>
+        function calculateTariff() {
+            var price = document.getElementById("price").value;
+            var currency = document.getElementById("currency").value;
+            var exchangeRateToKRW = document.getElementById("exchangeRate").value;
+
+            var priceInKRW = price * exchangeRateToKRW;
+
+            var vat = priceInKRW * 0.10; // 부가가치세 10%
+            var exciseTax = priceInKRW * 0.72; // 주세 72%
+            var educationTax = exciseTax * 0.30; // 교육세 (주세의 30%)
+            var totalTax = vat + exciseTax + educationTax;
+            var totalPrice = parseFloat(priceInKRW) + totalTax;
+
+            document.getElementById("result").innerHTML = 
+                "기본 가격: " + priceInKRW.toFixed(2) + " KRW<br>" +
+                "부가가치세 (10%): " + vat.toFixed(2) + " KRW<br>" +
+                "주세 (72%): " + exciseTax.toFixed(2) + " KRW<br>" +
+                "교육세 (주세의 30%): " + educationTax.toFixed(2) + " KRW<br>" +
+                "총 세금: " + totalTax.toFixed(2) + " KRW<br>" +
+                "총 가격 (세금 포함): " + totalPrice.toFixed(2) + " KRW";
+        }
+    </script>
+</head>
+<body>
+    <h2>위스키 관세 계산기 (대한민국)</h2>
+    <p>
+        통화 선택: 
+        <select id="currency">
+            <option value="KRW">KRW</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EURO</option>
+        </select>
+    </p>
+    <p>원화 환율 입력: <input type="number" id="exchangeRate" placeholder="원화 환율"></p>
+    <p>위스키 가격 입력: <input type="number" id="price"></p>
+    <button onclick="calculateTariff()">계산하기</button>
+    <div id="result"></div>
+</body>
+</html>
